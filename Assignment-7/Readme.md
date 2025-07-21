@@ -31,5 +31,5 @@ This is a web application built with **Streamlit** that predicts flight ticket p
 1. **Clone the repository**:
 
 ```bash
-git clone [https://github.com/deepraj16/flight-price-predictor.git](https://github.com/deepraj16/Celebel-Assinment/tree/main/Assignment-7)
-cd flight-price-predictor
+git clone https://github.com/deepraj16/Celebel-Assinment/Assignment-7
+cd Celebel-Assinment/Assignment-7
