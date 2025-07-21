@@ -4,6 +4,7 @@ This is a web application built with **Streamlit** that predicts flight ticket p
 
 ---
 
+<img width="1523" height="1005" alt="image" src="https://github.com/user-attachments/assets/78835b4c-21e3-4f17-b09d-07b9be59bfad" />
 
 ##  Features
 
