@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Chat Assistant</title>
+    <head>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PDF Chat Assistant</h1>
+            <p>Upload a PDF document and chat with it using AI</p>
+        </div>
+        
+        <div class="content">
+            <!-- Messages -->
+            {% if success %}
+                <div class="alert alert-success">
+                     {{ success }}
+                </div>
+            {% endif %}
+            
+            {% if error %}
+                <div class="alert alert-error">
+                    {{ error }}
+                </div>
+            {% endif %}
+            
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h3>Upload PDF Document</h3>
+                <p style="margin-bottom: 20px; color: #666;">Select a PDF file to start chatting with your document</p>
+                
+                <form action="/upload" method="post" enctype="multipart/form-data" id="uploadForm">
+                    <div class="file-input-wrapper">
+                        <input type="file" name="document" accept=".pdf" class="file-input" id="fileInput" required>
+                        <button type="button" class="file-input-button">Choose PDF File</button>
+                    </div>
+                    <div class="file-name" id="fileName" style="display: none;"></div> 
+                    <button type="submit" class="upload-btn">Upload & Process</button>
+                </form>
+            </div>
+            
+            <!-- Chat Section -->
+            {% if chat_history is defined or error or success %}
+            <div class="chat-section">
+                <h3>Chat with your Document</h3>
+                
+                <!-- Chat History -->
+                {% if chat_history and chat_history|length > 0 %}
+                <div class="chat-history">
+                    {% for message in chat_history %}
+                        <div class="message human-message">
+                            <div class="message-label"> You:</div>
+                            {{ message.human }}
+                        </div>
+                        <div class="message ai-message">
+                            <div class="message-label"> AI Assistant:</div>
+                            {{ message.ai }}
+                        </div>
+                    {% endfor %}
+                </div>
+                <form action="/clear" method="post" style="text-align: right; margin-bottom: 15px;">
+                    <button type="submit" class="clear-btn">Clear Chat History</button>
+                </form>
+                {% endif %}        
+                <!-- Question Form -->
+                <form action="/ask" method="post" class="question-form">
+                    <input 
+                        type="text" 
+                        name="question" 
+                        placeholder="Ask a question about your document..." 
+                        class="question-input"
+                        required
+                    >
+                    <button type="submit" class="ask-btn">Ask</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>   
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            const fileNameDiv = document.getElementById('fileName');
+            
+            if (fileName) {
+                fileNameDiv.textContent = `Selected: ${fileName}`;
+                fileNameDiv.style.display = 'block';
+            } else {
+                fileNameDiv.style.display = 'none';
+            }
+        });
+        const chatHistory = document.querySelector('.chat-history');
+        if (chatHistory) {
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+        window.addEventListener('load', function() {
+            const questionInput = document.querySelector('.question-input');
+            if (questionInput) {
+                questionInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
