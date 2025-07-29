@@ -9,7 +9,7 @@ A **Retrieval-Augmented Generation (RAG)** based chatbot that intelligently answ
 **RAG (Retrieval-Augmented Generation)** is a technique that retrieves relevant chunks from your own documents and feeds them into an LLM to generate factually grounded answers.
 
 ---
-<img width="1046" height="810" alt="image" src="https://github.com/user-attachments/assets/7f0f86c8-76de-476d-8f3c-cff7e2d31b32" />
+<img width="1046" height="810" alt="image" src="https://github.com/user-attachments/assets/7f0f86c8-76de-476d-8f3c-cff7e2d31b32"/>
 
 <img width="997" height="880" alt="image" src="https://github.com/user-attachments/assets/c6b1a14e-7293-4a72-9729-b524b396351d" />
 
